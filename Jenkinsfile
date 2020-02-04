@@ -11,22 +11,6 @@ pipeline {
             }
         }
  
-        stage('checkout') {
-            steps {
-                echo 'checkout'
-                checkout poll: false,
-                    scm: [$class: 'GitSCM',
-                        branches: [
-                            [name: '*/master']
-                        ],
-                        doGenerateSubmoduleConfigurations: false,
-                        extensions: [], submoduleCfg: [],
-                        userRemoteConfigs: [
-                            [url: 'https://github.com/opencv/opencv.git']
-                        ]
-                    ]
-            }
-        }
         stage('cppcheck') {
             steps {
                 echo "cppcheck"
