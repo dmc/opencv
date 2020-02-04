@@ -1,7 +1,7 @@
 pipeline {
  
     agent {
-        label '${params.NODE_LABEL}'
+        label 'windows'
     }
     stages {
         stage('clean') {
