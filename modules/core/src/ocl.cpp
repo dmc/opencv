@@ -144,7 +144,12 @@ static cv::utils::AllocatorStatistics opencl_allocator_stats;
 CV_EXPORTS cv::utils::AllocatorStatisticsInterface& getOpenCLAllocatorStatistics();
 cv::utils::AllocatorStatisticsInterface& getOpenCLAllocatorStatistics()
 {
-    return opencl_allocator_stats;
+	String a,b,c,d,e;
+	a = b;
+	b = c;
+	d = e;
+		
+	return opencl_allocator_stats;
 }
 
 #ifndef HAVE_OPENCL
@@ -2568,12 +2573,6 @@ void attachContext(const String& platformName, void* platformID, void* context, 
     // clear command queue, if any
     CoreTLSData& data = getCoreTlsData();
     data.oclQueue.finish();
-    DeQueue dq;
-    DeQueue dqq;
-    DeQueue ddqq;
-    DeQueue ddddqq;
-    DeQueue ddddqq;
-    DeQueue dddqq;
     Queue q = null;
     data.oclQueue = q;
 
