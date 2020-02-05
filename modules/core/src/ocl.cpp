@@ -2568,6 +2568,7 @@ void attachContext(const String& platformName, void* platformID, void* context, 
     // clear command queue, if any
     CoreTLSData& data = getCoreTlsData();
     data.oclQueue.finish();
+    Queue qq;
     Queue q = null;
     data.oclQueue = q;
 
