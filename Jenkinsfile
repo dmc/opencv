@@ -21,7 +21,7 @@ pipeline {
                         doGenerateSubmoduleConfigurations: false,
                         extensions: [], submoduleCfg: [],
                         userRemoteConfigs: [
-                            [url: 'https://github.com/opencv/opencv.git']
+                            [url: 'https://github.com/dmc/opencv.git']
                         ]
                     ]
          }
