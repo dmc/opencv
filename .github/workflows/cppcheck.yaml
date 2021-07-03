@@ -21,7 +21,7 @@ jobs:
       - run mv cppcheck.xml ./public
       
       - name: archive dist
-        - uses: actions/upload-artifact@v1
-          with:
+        uses: actions/upload-artifact@v1
+        with:
             name: public
             path: public
