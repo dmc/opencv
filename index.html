@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Cppcheck - HTML report - cppcheck</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+    </style>
+    <script language="javascript">
+      function getStyle(el,styleProp) {
+        if (el.currentStyle)
+          var y = el.currentStyle[styleProp];
+        else if (window.getComputedStyle)
+          var y = document.defaultView.getComputedStyle(el,null).getPropertyValue(styleProp);
+        return y;
+      }
+      function toggle() {
+        var el = this.expandable_content;
+        var mark = this.expandable_marker;
+        if (el.style.display == "block") {
+          el.style.display = "none";
+          mark.innerHTML = "[+]";
+        } else {
+          el.style.display = "block";
+          mark.innerHTML = "[-]";
+        }
+      }
+      function init_expandables() {
+        var elts = document.getElementsByClassName("expandable");
+        for (var i = 0; i < elts.length; i++) {
+          var el = elts[i];
+          var clickable = el.getElementsByTagName("span")[0];
+          var marker = clickable.getElementsByClassName("marker")[0];
+          var content = el.getElementsByClassName("content")[0];
+          var width = clickable.clientWidth - parseInt(getStyle(content, "padding-left")) - parseInt(getStyle(content, "padding-right"));
+          content.style.width = width + "px";
+          clickable.expandable_content = content;
+          clickable.expandable_marker = marker;
+          clickable.onclick = toggle;
+        }
+      }
+      function set_class_display(c, st) {
+        var elements = document.querySelectorAll('.' + c),
+            len = elements.length;
+        for (i = 0; i < len; i++) {
+            elements[i].style.display = st;
+        }
+      }
+      function toggle_class_visibility(id) {
+        var box = document.getElementById(id);
+        set_class_display(id, box.checked ? '' : 'none');
+      }
+    </script>
+  </head>
+  <body onload="init_expandables()">
+      <div id="header">
+        <h1>Cppcheck report - cppcheck:  </h1>
+      </div>
+      <div id="menu_index">
+       <p id="filename"><a href="index.html">Defect summary;</a> </p>
+       <table>           <tr><th>Show</th><th>#</th><th>Defect ID</th></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='nullPointer' name='nullPointer' checked></td><td>25</td><td>nullPointer</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='nanInArithmeticExpression' name='nanInArithmeticExpression' checked></td><td>10</td><td>nanInArithmeticExpression</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='arrayIndexOutOfBounds' name='arrayIndexOutOfBounds' checked></td><td>2</td><td>arrayIndexOutOfBounds</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='syntaxError' name='syntaxError' checked></td><td>1</td><td>syntaxError</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='toomanyconfigs' name='toomanyconfigs' checked></td><td>1</td><td>toomanyconfigs</td></tr>           <tr><td></td><td>39</td><td>total</td></tr>       </table>       <a href="stats.html">Statistics</a></p>
+      </div>
+      <div id="content_index">
+       <table>
+       <tr><th>Line</th><th>Id</th><th>CWE</th><th>Severity</th><th>Message</th></tr>
+       <tr><td colspan='4'><a href='4.html'></a></td></tr>
+       <tr class="toomanyconfigs"><td><a href="4.html#line-0">0</a></td><td>toomanyconfigs</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>information</td><td >Too many #ifdef configurations - cppcheck only checks 12 configurations. Use --force to check all configurations. For more details, use --enable=information.</td></tr>
+       <tr><td colspan='4'><a href='0.html'>modules/core/src/convert.simd.hpp</a></td></tr>
+       <tr class="syntaxError"><td><a href="0.html#line-97">97</a></td><td>syntaxError</td><td></td><td>error</td><td class="error">syntax error</td></tr>
+       <tr><td colspan='4'><a href='1.html'>modules/core/src/mathfuncs_core.simd.hpp</a></td></tr>
+       <tr class="nanInArithmeticExpression"><td><a href="1.html#line-443">443</a></td><td>nanInArithmeticExpression</td><td><a href='https://cwe.mitre.org/data/definitions/369.html'>369</a></td><td>style</td><td >Using NaN/Inf in a computation.</td></tr>
+       <tr class="nanInArithmeticExpression"><td><a href="1.html#line-444">444</a></td><td>nanInArithmeticExpression</td><td><a href='https://cwe.mitre.org/data/definitions/369.html'>369</a></td><td>style</td><td >Using NaN/Inf in a computation.</td></tr>
+       <tr class="nanInArithmeticExpression"><td><a href="1.html#line-445">445</a></td><td>nanInArithmeticExpression</td><td><a href='https://cwe.mitre.org/data/definitions/369.html'>369</a></td><td>style</td><td >Using NaN/Inf in a computation.</td></tr>
+       <tr class="nanInArithmeticExpression"><td><a href="1.html#line-446">446</a></td><td>nanInArithmeticExpression</td><td><a href='https://cwe.mitre.org/data/definitions/369.html'>369</a></td><td>style</td><td >Using NaN/Inf in a computation.</td></tr>
+       <tr class="nanInArithmeticExpression"><td><a href="1.html#line-556">556</a></td><td>nanInArithmeticExpression</td><td><a href='https://cwe.mitre.org/data/definitions/369.html'>369</a></td><td>style</td><td >Using NaN/Inf in a computation.</td></tr>
+       <tr class="nanInArithmeticExpression"><td><a href="1.html#line-557">557</a></td><td>nanInArithmeticExpression</td><td><a href='https://cwe.mitre.org/data/definitions/369.html'>369</a></td><td>style</td><td >Using NaN/Inf in a computation.</td></tr>
+       <tr class="nanInArithmeticExpression"><td><a href="1.html#line-558">558</a></td><td>nanInArithmeticExpression</td><td><a href='https://cwe.mitre.org/data/definitions/369.html'>369</a></td><td>style</td><td >Using NaN/Inf in a computation.</td></tr>
+       <tr class="nanInArithmeticExpression"><td><a href="1.html#line-559">559</a></td><td>nanInArithmeticExpression</td><td><a href='https://cwe.mitre.org/data/definitions/369.html'>369</a></td><td>style</td><td >Using NaN/Inf in a computation.</td></tr>
+       <tr class="nanInArithmeticExpression"><td><a href="1.html#line-560">560</a></td><td>nanInArithmeticExpression</td><td><a href='https://cwe.mitre.org/data/definitions/369.html'>369</a></td><td>style</td><td >Using NaN/Inf in a computation.</td></tr>
+       <tr class="nanInArithmeticExpression"><td><a href="1.html#line-561">561</a></td><td>nanInArithmeticExpression</td><td><a href='https://cwe.mitre.org/data/definitions/369.html'>369</a></td><td>style</td><td >Using NaN/Inf in a computation.</td></tr>
+       <tr><td colspan='4'><a href='3.html'>modules/core/src/ocl.cpp</a></td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-1780">1780</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: platforms</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-1845">1845</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: devices</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-3176">3176</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event_wait_list</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-3236">3236</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event_wait_list</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-3236">3236</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-4920">4920</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event_wait_list</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-4920">4920</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-4932">4932</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event_wait_list</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-4932">4932</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-4939">4939</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event_wait_list</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-4939">4939</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-5184">5184</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event_wait_list</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-5184">5184</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-5380">5380</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event_wait_list</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-5380">5380</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-5521">5521</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event_wait_list</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-5521">5521</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-5665">5665</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event_wait_list</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-5665">5665</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-5704">5704</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event_wait_list</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-5704">5704</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-5945">5945</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event_wait_list</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-5945">5945</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-6541">6541</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event_wait_list</td></tr>
+       <tr class="nullPointer"><td><a href="3.html#line-6541">6541</a></td><td>nullPointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Possible null pointer dereference: event</td></tr>
+       <tr><td colspan='4'><a href='2.html'>modules/core/src/ocl_deprecated.hpp</a></td></tr>
+       <tr class="arrayIndexOutOfBounds"><td><a href="2.html#line-918">918</a></td><td>arrayIndexOutOfBounds</td><td><a href='https://cwe.mitre.org/data/definitions/119.html'>119</a></td><td>error</td><td class="error">Array 'dst_origin[3]' accessed at index 3, which is out of bounds.</td></tr>
+       <tr class="arrayIndexOutOfBounds"><td><a href="2.html#line-918">918</a></td><td>arrayIndexOutOfBounds</td><td><a href='https://cwe.mitre.org/data/definitions/119.html'>119</a></td><td>error</td><td class="error">Array 'region[3]' accessed at index 3, which is out of bounds.</td></tr>
+       </table>
+      </div>
+      <div id="footer">
+        <p>
+         Cppcheck 1.82 - a tool for static C/C++ code analysis</br>
+         </br>
+         Internet: <a href="http://cppcheck.net">http://cppcheck.net</a></br>
+         IRC: <a href="irc://irc.freenode.net/cppcheck">irc://irc.freenode.net/cppcheck</a></br>
+        <p>
+      </div>
+  </body>
+</html>
