@@ -7,22 +7,15 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
+      - uses: actions/checkout@v2
 
-    - name: setup
-      - run apt-get update && apt-get install  -y \
-        build-essential \ 
-        cppcheck \ 
-        curl \ 
+      - run apt-get update && apt-get install  -y build-essential cppcheck curl \ 
         python \ 
         python-pygments \ 
         && apt-get clean \ 
         && rm -rf /var/lib/apt/lists/*
       - run mkdir /cfg
 
-    name: checkout
-      - uses: actions/checkout@v2
-
-    name: cppcheck
       - run cppcheck --xml --xml-version=2 "modules/core/src" 2> cppcheck.xml
       - run cppcheck-htmlreport --file=cppcheck.xml --title=cppcheck --report-dir=./public
       - run mv cppcheck.xml ./public
