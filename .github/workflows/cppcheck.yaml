@@ -4,16 +4,19 @@ on:
   push:
     
 jobs:
-  build:
+  cppcheck:
     runs-on: ubuntu-18.04
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
-
       - name: setup
         run: |
               sudo apt-get update
               sudo apt-get install -y build-essential cppcheck curl python python-pygments
+
+      - name: printenv
+        run: env
+
+      - name: checkout
+        uses: actions/checkout@v2
 
       - name: cppcheck
         run: |
@@ -21,12 +24,14 @@ jobs:
               cppcheck-htmlreport --file=cppcheck.xml --title=cppcheck --report-dir=./public
 
       - name: deploy
+        if: "(steps.cppcheck.conclusion == 'success')"
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
 
       - name: archive
+        if: "(steps.cppcheck.conclusion == 'success')"
         uses: actions/upload-artifact@v1
         with:
             name: cppcheck.xml
