@@ -16,9 +16,6 @@ jobs:
               sudo apt-get update
               sudo apt-get install -y build-essential cppcheck curl python python-pygments
 
-      - name: printenv
-        run: env
-
       - name: checkout
         if: steps.setup.conclusion == 'success'
         uses: actions/checkout@v2
@@ -30,16 +27,16 @@ jobs:
               cppcheck --xml --xml-version=2 "modules/core/src" 2> cppcheck.xml
               cppcheck-htmlreport --file=cppcheck.xml --title=cppcheck --report-dir=./public
 
-      - name: deploy
-        if: steps.cppcheck.conclusion == 'success'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-
-      - name: archive
+      - name: archive-cppcheck.xml
         if: steps.cppcheck.conclusion == 'success'
         uses: actions/upload-artifact@v1
         with:
             name: cppcheck.xml
             path: cppcheck.xml
+
+      - name: archive-html-report
+        if: steps.cppcheck.conclusion == 'success'
+        uses: actions/upload-artifact@v1
+        with:
+            name: html-report
+            path: public
