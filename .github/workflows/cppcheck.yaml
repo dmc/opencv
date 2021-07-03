@@ -20,12 +20,12 @@ jobs:
         run: env
 
       - name: checkout
+        if: steps.setup.conclusion == 'success'
         uses: actions/checkout@v2
 
       - name: cppcheck
         if: steps.setup.conclusion == 'success'
         id: cppcheck
-        uses: actions/checkout@v2
         run: |
               cppcheck --xml --xml-version=2 "modules/core/src" 2> cppcheck.xml
               cppcheck-htmlreport --file=cppcheck.xml --title=cppcheck --report-dir=./public
