@@ -14,7 +14,6 @@ jobs:
         python-pygments \ 
         && apt-get clean \ 
         && rm -rf /var/lib/apt/lists/*
-      - run mkdir /cfg
 
       - run cppcheck --xml --xml-version=2 "modules/core/src" 2> cppcheck.xml
       - run cppcheck-htmlreport --file=cppcheck.xml --title=cppcheck --report-dir=./public
