@@ -11,12 +11,14 @@ jobs:
         uses: actions/checkout@v2
 
       - name: setup
-        run: sudo apt-get update
-        run: sudo apt-get install -y build-essential cppcheck curl python python-pygments
+        run: |
+              sudo apt-get update
+              sudo apt-get install -y build-essential cppcheck curl python python-pygments
 
       - name: cppcheck
-        run: cppcheck --xml --xml-version=2 "modules/core/src" 2> cppcheck.xml
-        run: cppcheck-htmlreport --file=cppcheck.xml --title=cppcheck --report-dir=./public
+        run: |
+              cppcheck --xml --xml-version=2 "modules/core/src" 2> cppcheck.xml
+              cppcheck-htmlreport --file=cppcheck.xml --title=cppcheck --report-dir=./public
 
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
